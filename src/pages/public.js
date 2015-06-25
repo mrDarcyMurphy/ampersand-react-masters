@@ -1,11 +1,12 @@
 'use strict'
 
 import React from 'react'
+import NavHelper from '../components/nav-helper'
 
 const PublicPage = React.createClass({
   render () {
     return (
-      <div className='container'>
+      <NavHelper className='container'>
         <header role='banner'>
           <h1>Labelr</h1>
         </header>
@@ -15,7 +16,7 @@ const PublicPage = React.createClass({
             <span className='mega-octicon octicon-mark-github'></span> Login with GitHub
           </a>
         </div>
-      </div>
+      </NavHelper>
     )
   }
 })

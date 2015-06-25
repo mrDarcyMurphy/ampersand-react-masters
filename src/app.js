@@ -1,11 +1,16 @@
+'use strict'
+
 import Router from './router'
 import style from './styles/main.styl'
+import app from 'ampersand-app'
 
-window.app = {
+window.app = app
+
+app.extend({
   init () {
     this.router = new Router()
     this.router.history.start()
   }
-}
+})
 
-window.app.init()
+app.init()
