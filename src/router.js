@@ -24,6 +24,7 @@ export default Router.extend({
     '': 'public',
     'repos': 'repos',
     'login': 'login',
+    'logout': 'logout',
     'auth/callback?:query': 'authCallback'
   },
 
@@ -45,14 +46,20 @@ export default Router.extend({
     })
   },
 
+  logout () {
+    window.localStorage.clear()
+    window.location = '/'
+  },
+
   authCallback (query) {
     query = qs.parse(query)
     console.log(query)
     xhr({
-      url: 'https://gatekeeper-murphy.herokuapp.com/authenticate/' + query.code
+      url: 'https://gatekeeper-murphy.herokuapp.com/authenticate/' + query.code,
+      json: true
     }, (err, req, body) => {
-      body = JSON.parse(body)
       app.me.token = body.token
+      this.redirectTo('/repos')
     })
   }
 
