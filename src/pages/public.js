@@ -1,5 +1,6 @@
-import React from 'react'
+'use strict'
 
+import React from 'react'
 
 const PublicPage = React.createClass({
   render () {
