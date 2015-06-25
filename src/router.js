@@ -15,7 +15,11 @@ export default Router.extend({
 
   renderPage (page, opts = {layout: true}) {
     if (opts.layout) {
-      page = (<Layout>{page}</Layout>)
+      page = (
+        <Layout me={app.me}>
+          {page}
+        </Layout>
+      )
     }
     React.render(page, document.body)
   },
@@ -35,7 +39,7 @@ export default Router.extend({
 
   repos () {
     console.log('repos')
-    this.renderPage(<ReposPage />, {layout: true})
+    this.renderPage(<ReposPage repos={app.me.repos} />, {layout: true})
   },
 
   login () {

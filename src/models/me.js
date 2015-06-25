@@ -1,14 +1,16 @@
+'use strict'
+
 import Model from 'ampersand-model'
+import githubMixin from '../helpers/github-mixin'
+import RepoCollection from '../models/repo-collection'
 
-export default Model.extend({
-  props: {
-    id: 'number',
-    login: 'string',
-    avatarUrl: 'string'
-  },
+export default Model.extend(githubMixin, {
 
-  session: {
-    token: 'string'
+  fetchInitialData () {
+    if (this.token) {
+      this.fetch()
+      this.repos.fetch()
+    }
   },
 
   initialize () {
@@ -18,5 +20,23 @@ export default Model.extend({
 
   onTokenChange () {
     window.localStorage.token = this.token
-  }
+    this.fetchInitialData()
+  },
+
+  props: {
+    id: 'number',
+    login: 'string',
+    avatar_url: 'string'
+  },
+
+  session: {
+    token: 'string'
+  },
+
+  collections: {
+    repos: RepoCollection
+  },
+
+  url: 'https://api.github.com/user'
+
 })

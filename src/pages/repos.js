@@ -1,17 +1,25 @@
 'use strict'
 
 import React from 'react'
+import ampersandMixin from 'ampersand-react-mixin'
 
 
 const ReposPage = React.createClass({
 
   displayName: 'ReposPage',
 
+  mixins: [ampersandMixin],
+
   render () {
+    const {repos} = this.props
     return (
       <div>
-        <h1>Repo Page</h1>
-        <a href="/">/public</a>
+        <h1>Repos</h1>
+        <ul>
+          {repos.map((repo) => {
+            return (<li><a href="">{repo.full_name}</a></li>)
+          })}
+        </ul>
       </div>
     )
   }
