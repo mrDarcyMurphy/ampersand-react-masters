@@ -20,6 +20,7 @@
   // To give you an idea how to override rule options:
   "rules": {
     // ESLint
+    "camelcase": [2, {"properties": "never"}],
     "dot-notation": [2, {"allowKeywords": false, "allowPattern": ""}],
     "eol-last": [0],
     "no-mixed-requires": [0],
