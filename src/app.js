@@ -1,9 +1,12 @@
 'use strict'
 
 import Router from './router'
-import style from './styles/main.styl'
 import app from 'ampersand-app'
 import Me from './models/me'
+
+import style from './styles/main.styl'
+import icons from 'octicons/octicons/octicons.css'
+
 
 window.app = app
 
