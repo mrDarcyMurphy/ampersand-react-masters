@@ -2,11 +2,14 @@
 
 import Router from 'ampersand-router'
 import React from 'react'
+import qs from 'qs'
+import xhr from 'xhr'
+import app from 'ampersand-app'
+
 import Layout from './layout'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
-import qs from 'qs'
-import xhr from 'xhr'
+
 
 export default Router.extend({
 
@@ -48,7 +51,8 @@ export default Router.extend({
     xhr({
       url: 'https://gatekeeper-murphy.herokuapp.com/authenticate/' + query.code
     }, (err, req, body) => {
-      console.log(body)
+      body = JSON.parse(body)
+      app.me.token = body.token
     })
   }
 
