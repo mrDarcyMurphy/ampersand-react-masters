@@ -1,19 +1,36 @@
 {
+  "ecmaFeatures": {
+    "jsx": true
+  },
+
   // I want to use babel-eslint for parsing!
   "parser": "babel-eslint",
+
   "env": {
     // I write for browser
     "browser": true,
     // in CommonJS
     "node": true
   },
+
+  "plugins": [
+    "react"
+  ],
+
   // To give you an idea how to override rule options:
   "rules": {
+    // ESLint
     "dot-notation": [2, {"allowKeywords": false, "allowPattern": ""}],
     "eol-last": [0],
     "no-mixed-requires": [0],
     "no-underscore-dangle": [0],
     "quotes": [2, "single"],
-    "semi": [2, "never"]
+    "semi": [2, "never"],
+
+    // React
+    "react/display-name": 1,
+    "react/self-closing-comp": 1,
+    "react/sort-comp": 1,
+    "react/wrap-multilines": 1
   }
 }
