@@ -5,3 +5,4 @@ module.exports = getConfig({
   out: 'public',
   clearBeforeBuild: true
 })
+
