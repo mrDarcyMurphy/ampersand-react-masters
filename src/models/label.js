@@ -3,6 +3,7 @@
 import Model from 'ampersand-model'
 import githubMixin from '../helpers/github-mixin'
 import xhr from 'xhr'
+import app from 'ampersand-app'
 
 export default Model.extend(githubMixin, {
 
@@ -26,7 +27,15 @@ export default Model.extend(githubMixin, {
     editing: {
       type: 'boolean',
       default: false
+    },
+    saved: {
+      type: 'boolean',
+      default: true
     }
+  },
+
+  isNew () {
+    return !this.saved
   },
 
   update (attributes) {

@@ -10,12 +10,24 @@ const ReposPage = React.createClass({
 
   mixins: [ampersandMixin],
 
+  onClickAdd (event) {
+    event.preventDefault()
+    this.props.labels.add({
+      name: '',
+      color: '',
+      editing: true,
+      saved: false
+    }, {at: 0})
+  },
+
   render () {
     const {repo, labels} = this.props
     return (
       <div className='container'>
         <h1>{repo.full_name}</h1>
-        <p>Labels</p>
+        <p>
+          <button onClick={this.onClickAdd} className="button">Add Label</button>
+        </p>
         <ul>
           {labels.map((label) => {
             return <Label key={label.name} label={label} />

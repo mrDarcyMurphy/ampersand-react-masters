@@ -69,6 +69,9 @@ export default Router.extend({
       url: 'https://gatekeeper-murphy.herokuapp.com/authenticate/' + query.code,
       json: true
     }, (err, req, body) => {
+      if (err) {
+        console.error(err)
+      }
       app.me.token = body.token
       this.redirectTo('/repos')
     })
