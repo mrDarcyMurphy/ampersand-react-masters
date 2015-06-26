@@ -18,8 +18,8 @@ export default Collection.extend(githubMixin, {
       model = new Repo({
         full_name: fullName
       })
-      model.fetch()
     }
+    model.fetch()
     return model
   }
 
