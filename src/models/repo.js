@@ -25,6 +25,12 @@ export default Model.extend(githubMixin, {
     labels: LabelCollection
   },
 
+  fetch () {
+    console.log("REPO FETCH")
+    Model.prototype.fetch.apply(this, arguments)
+    this.labels.fetch()
+  },
+
   url () {
     return 'https://api.github.com/repos/' + this.full_name
   }
