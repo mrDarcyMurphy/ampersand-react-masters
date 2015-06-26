@@ -5,11 +5,13 @@ import React from 'react'
 import qs from 'qs'
 import xhr from 'xhr'
 import app from 'ampersand-app'
+import config from './config'
 
 import Layout from './layout'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
 import RepoDetailPage from './pages/repo-detail'
+import MessagePage from './pages/message'
 
 
 function requiresAuth (route) {
@@ -41,7 +43,8 @@ export default Router.extend({
     'logout': 'logout',
     'auth/callback?:query': 'authCallback',
     'repos': requiresAuth('repos'),
-    'repo/:owner/:name': requiresAuth('repoDetail')
+    'repo/:owner/:name': requiresAuth('repoDetail'),
+    '*fourOhFour': 'notFound'
   },
 
   public () {
@@ -61,7 +64,7 @@ export default Router.extend({
 
   login () {
     window.location = 'https://github.com/login/oauth/authorize?' + qs.stringify({
-      client_id: '0a5b69d87d924d7c0566',
+      client_id: config.clientId,
       redirect_url: window.location.origin + '/auth/callback',
       scope: 'user, repo'
     })
@@ -76,7 +79,7 @@ export default Router.extend({
     query = qs.parse(query)
     console.log(query)
     xhr({
-      url: 'https://gatekeeper-murphy.herokuapp.com/authenticate/' + query.code,
+      url: config.authUrl + '/' + query.code,
       json: true
     }, (err, req, body) => {
       if (err) {
@@ -85,6 +88,11 @@ export default Router.extend({
       app.me.token = body.token
       this.redirectTo('/repos')
     })
+    this.renderPage(<MessagePage title="Fetching your data" />)
+  },
+
+  notFound (path) {
+    this.renderPage(<MessagePage title="Huh..." message="Couldn't find what you were looking for." />, {layout: false})
   }
 
 })
