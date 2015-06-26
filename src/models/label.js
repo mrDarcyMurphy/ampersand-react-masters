@@ -5,8 +5,9 @@ import githubMixin from '../helpers/github-mixin'
 
 export default Model.extend(githubMixin, {
 
+  idAttribute: 'name',
+
   props: {
-    // url: 'string',
     name: 'string',
     color: 'string'
   },
@@ -20,8 +21,11 @@ export default Model.extend(githubMixin, {
     }
   },
 
-  url () {
-    return 'https://api.github.com/repos/' + this.parent.full_name + '/labels' + this.name
+  session: {
+    editing: {
+      type: 'boolean',
+      default: false
+    }
   }
 
 })
