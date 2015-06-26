@@ -19,7 +19,9 @@ const ReposPage = React.createClass({
           {repos.map((repo) => {
             return (
               <li key={repo.id}>
-                <span className="octicon octicon-repo"></span> <a href="">{repo.full_name}</a>
+                <span className="octicon octicon-repo"></span>
+                &nbsp;
+                <a href={repo.appUrl}>{repo.full_name}</a>
               </li>
             )
           })}

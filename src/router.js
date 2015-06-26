@@ -9,6 +9,7 @@ import app from 'ampersand-app'
 import Layout from './layout'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
+import RepoDetailPage from './pages/repo-detail'
 
 
 export default Router.extend({
@@ -29,7 +30,8 @@ export default Router.extend({
     'repos': 'repos',
     'login': 'login',
     'logout': 'logout',
-    'auth/callback?:query': 'authCallback'
+    'auth/callback?:query': 'authCallback',
+    'repo/:owner/:name': 'repoDetail'
   },
 
   public () {
@@ -40,6 +42,11 @@ export default Router.extend({
   repos () {
     console.log('repos')
     this.renderPage(<ReposPage repos={app.me.repos} />, {layout: true})
+  },
+
+  repoDetail (owner, name) {
+    const model = app.me.repos.getByFullName(owner + '/' + name)
+    this.renderPage(<RepoDetailPage repo={model} />, {layout: true})
   },
 
   login () {
