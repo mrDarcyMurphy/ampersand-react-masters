@@ -15,7 +15,6 @@ export default Collection.extend(githubMixin, {
       full_name: fullName
     })
     if (!model) {
-      console.log("wtf");
       model = new Repo({
         full_name: fullName
       })

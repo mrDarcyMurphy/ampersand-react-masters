@@ -15,8 +15,19 @@ const ReposPage = React.createClass({
     return (
       <div className='container'>
         <h1>{repo.full_name}</h1>
-        <p></p>
-        <ul></ul>
+        <p>Labels</p>
+        <ul>
+          {repo.labels.map((label) => {
+            return (
+              <div className='label'>
+                <span className='label-color' style={{backgroundColor: label.cssColor}}>&nbsp;</span>
+                <span>{label.name}</span>
+                <span className='octicon octicon-pencil'></span>
+                <span className='octicon octicon-x'></span>
+              </div>
+            )
+          })}
+        </ul>
       </div>
     )
   }
