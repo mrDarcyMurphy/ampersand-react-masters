@@ -11,13 +11,13 @@ const ReposPage = React.createClass({
   mixins: [ampersandMixin],
 
   render () {
-    const {repo} = this.props
+    const {repo, labels} = this.props
     return (
       <div className='container'>
         <h1>{repo.full_name}</h1>
         <p>Labels</p>
         <ul>
-          {repo.labels.map((label) => {
+          {labels.map((label) => {
             return (
               <div className='label'>
                 <span className='label-color' style={{backgroundColor: label.cssColor}}>&nbsp;</span>

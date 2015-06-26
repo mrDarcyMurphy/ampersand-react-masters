@@ -26,7 +26,6 @@ export default Model.extend(githubMixin, {
   },
 
   fetch () {
-    console.log("REPO FETCH")
     Model.prototype.fetch.apply(this, arguments)
     this.labels.fetch()
   },
