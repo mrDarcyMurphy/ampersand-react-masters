@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ampersandMixin from 'ampersand-react-mixin'
-
+import Label from '../components/label'
 
 const ReposPage = React.createClass({
 
@@ -18,14 +18,7 @@ const ReposPage = React.createClass({
         <p>Labels</p>
         <ul>
           {labels.map((label) => {
-            return (
-              <div className='label'>
-                <span className='label-color' style={{backgroundColor: label.cssColor}}>&nbsp;</span>
-                <span>{label.name}</span>
-                <span className='octicon octicon-pencil'></span>
-                <span className='octicon octicon-x'></span>
-              </div>
-            )
+            return <Label key={label.name} label={label} />
           })}
         </ul>
       </div>
